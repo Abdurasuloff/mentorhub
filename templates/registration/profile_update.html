@@ -1,0 +1,148 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update your account</title>
+</head>
+<body>
+    
+    {% if  user.is_authenticated %}
+    <h1>Sign Up here!</h1>
+    <form method="post" enctype="multipart/form-data" > {% csrf_token %} 
+        {{form.as_p}}
+        <button type="submit">Update</button>
+    </form>
+    {% else %}
+    <h1>you are not logged in </h1> <a href="{% url 'index' %}">Go back home</a>
+    {% endif %}
+</body>
+</html> -->
+{% load static %}
+{% load crispy_forms_tags%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentorHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/styles/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    a{
+       color: black;
+    }
+    a:hover{
+        color: white;
+    }
+</style>
+<body>
+    <nav class="d-flex justify-content-between align-items-center navbar">
+        <div class="container">
+            <div class="logo">
+               
+                    <h1>
+                        Mentor<b>Hub</b>
+                    </h1>
+                </a>
+            </div>
+            <ul class="d-flex align-items-center ">
+                <li class="py-2 px-4"><a href="">Kurslar</a></li>
+                <li class="py-2 px-4"><a href="">Mentorlar</a></li>
+                <li class="py-2 px-4"><a href="">Biz haqimizda</a></li>
+                <li class="py-2 px-4"><a href="">Lorem</a></li>
+            </ul>
+
+
+            <div class="profile">
+                <img style="border-radius: 50%;" height="50" width="50" src="{{user.profile_pic.url}}" alt="user profile pic">
+            </div>
+           
+    </nav>
+
+
+
+
+    <div class="user-profile">
+        <div class="user-profile-title">
+            <div class="circle">
+                <img style="border-radius: 50%;" height="100" width="100" src="{{user.profile_pic.url}}" alt="user profile pic">
+
+            </div>
+            <h1 class="text-center">
+                {{user.get_full_name}}
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="user-profile-content">
+        <div class="container">
+            <div class="row mt-5">
+                
+                <div class="col-4 profile-tabs">
+                    <a href="{% url 'profile' user.username %}">
+                    <div class="tab  w-100 mb-2  p-3 rounded d-flex align-items-center ">
+                        <i class="fa-solid fa-user pe-3"></i>
+                        <span>
+                            Profilim
+                        </span>
+                    </div>
+                    </a>
+                    <a href="{% url 'update' %}">
+                        <div class="tab active w-100 mb-2  p-3 rounded d-flex align-items-center ">
+            
+                            <i class="fa-solid fa-edit pe-3"></i>
+                            <span>
+                                Tahrirlash
+                            </span>
+                        </div>
+                    </a>
+                    <div class="tab w-100 mb-2  p-3 rounded d-flex align-items-center ">
+                        <i class="fa-solid fa-newspaper pe-3"></i>
+                        <span>
+                            Profil
+                        </span>
+                    </div>
+                    <div class="tab w-100 mb-2  p-3 rounded d-flex align-items-center ">
+                        <i class="fa-solid fa-bookmark pe-3"></i>
+                        <span>
+                            Kurslarim
+                        </span>
+                    </div>
+                    <div class="tab w-100 mb-2  p-3 rounded d-flex align-items-center ">
+                        <i class="fa-solid fa-gear pe-3"></i>
+                        <span>
+                            Sozlamalar
+                        </span>
+                    </div>
+                    <div class="tab w-100 mb-2  p-3 rounded d-flex align-items-center ">
+                        <i class="fa-solid fa-delete-left pe-3"></i>
+                        <span>
+                            Chiqish
+                        </span>
+                    </div>
+                    
+                </div>
+                
+                <div class="col-8 p-3 bg-light profile-fied">
+                    <form  method="post" enctype="multipart/form-data"  >{% csrf_token %}
+                        <h3>Ma'lumotlarni tahrirlash</h3>
+                        {{form|crispy}}
+                        <button type="submit" class="btn btn-primary" > Saqlash </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

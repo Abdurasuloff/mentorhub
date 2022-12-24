@@ -1,0 +1,94 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MentorHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static '/styles/style.css' %}">
+</head>
+{% if request.user.is_authenticted %}
+<br><br><br><br><br>
+<h1>Siz allaqachon tizimga kirgansiz!</h1>
+{%  else %}
+<body class="login">
+<style>
+  .form-group{
+    color: white;
+  }
+</style>
+  
+    <div class="wrapper w-100 m-auto my-5">
+      <div class="title-text">
+        <div class="title login">Kirish</div>
+        <div class="title signup">Ro'yxatdan o'tish</div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label for="login" class="slide login">Kirish</label>
+          <label for="signup" class="slide signup">Ro'yxatdan o'tish</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <form method="post" class="login">{% csrf_token %}
+            {{form|crispy}}
+            <div class="pass-link"><a href="#">Parolni unutdingizmi?</a></div>
+            <div class="login-button">
+              <button type="submit" >
+                Kirish
+              </button>
+            </div>
+            <div class="signup-link text-white">Hisobingiz yo'qmi? <a href="">Ro'yxatdan o'ting</a></div>
+          </form>
+          <form action="{% url 'signup' %}" method="post" class="signup">{% csrf_token %}
+            <div class="field">
+              <input name="username" type="text" placeholder="Username" required>
+            </div>
+            <div class="field">
+              <input name="first_name" type="text" placeholder="First Name" required>
+            </div>
+            
+            <div class="field">
+              <input name="email" type="text" placeholder="Email Address" required>
+            </div>
+            
+            <div class="field">
+              <input name="password1" type="password" placeholder="Password" required>
+            </div>
+            <div class="field">
+              <input type="password2" placeholder="Confirm password" required>
+            </div>
+            <div class="login-button">
+              <button>
+                Ro'yxatdan o'tish
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="h-100 w-50">
+      <img class="w-100 d-block" src="./assets/images/14620625_5484597.jpg " alt="">
+    </div> -->
+  
+
+ 
+
+
+
+
+
+  <script src="{% static '/JS/app.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+{% endif %}
+</html>

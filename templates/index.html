@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+<head>
+  <title>{% block title %} Asosiy safiha {% endblock  %}</title>
+</head>
+{% block content %}
+  <div class="banner">
+    <nav class="d-flex justify-content-between align-items-center navbar container">
+      <div class="logo">
+        <a href="{% url 'main:index' %}">
+          <h1>
+            Mentor<b>Hub</b>
+          </h1>
+        </a>
+      </div>
+      <ul class="d-flex align-items-center ">
+        <li class="px-4 py-3"><a href="#courses">Kurslar</a></li>
+        <li class="px-4 py-3"><a href="">Mentorlar</a></li>
+        <li class="px-4 py-3"><a href="">Ta'lim berish </a></li>
+        <li class="px-4 py-3"><a href="">Ayollar uchun</a></li>
+      </ul>
+
+
+      <div class="sign">
+        <!-- <img src="{% static '/assets/images/moon1.png' %}" alt="" id="icon"> -->
+        {% if request.user.is_authenticated %}
+        
+        <div class="dropdown">
+          <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img style="border-radius: 50%;" height="50" width="50" src="{{user.profile_pic.url}}" alt="user profile pic">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="">{{user.first_name}}</a></li><hr>
+            <li><a class="dropdown-item" href="{% url 'profile' user.username %}">Profilim</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Chiqish</a></li>
+          </ul>
+        </div>
+        {% else %}
+        <button class="login"><a href="{% url 'login' %}">Kirish</a></button>
+        <button class="sign-up"><a href="{% url 'signup' %}">Ro'yxatdan o'tish</a></button>
+        {% endif %}
+      </div>
+    </nav>
+    <div class="container">
+
+
+      <div class="banner-content py-5">
+        <div class="row">
+          <div class="col-6">
+            <h1>
+              Mentor<b>Hub</b> bilan o'rganing.  
+            </h1>
+            <p class="text-white">
+              Istalgan vaqt, istalgan joyda chegarasiz ta'lim oling.
+            </p>
+            <button>
+            Boshlash
+            </button>
+           
+          </div>
+          <div class="col-6">
+            <img class="w-75 rotate" src="{% static '/assets/images/rocket-front-color.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses -->
+  <div class="courses py-5" id="courses">
+    <div class="container">
+      <div class="courses-title text-center">
+        <h1>
+          Kurslarimiz
+        </h1>
+      </div>
+      <div class="cards d-flex my-5 justify-content-between align-items-center flex-wrap">
+        <div class="card  mx-2 my-4">
+          <img class="card-img-top" src="{% static '/assets/images/14620625_5484597.jpg' %}" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+        </div>
+    
+        <div class="card  mx-2 my-4">
+          <img class="card-img-top" src="{% static '/assets/images/14620625_5484597.jpg' %}" alt="">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+          </div>
+        </div>
+      </div>
+
+      
+
+       
+    </div>
+  </div>
+{% endblock  %}

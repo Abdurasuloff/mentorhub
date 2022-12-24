@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{article.title}}</title>
+</head>
+<body>
+    <h1>{{article.title}}</h1>
+    <h5>{{article.body|safe}}</h5>
+<hr>
+    <form  method="post">{% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Send this review</button>
+    </form>
+    {% if article.articlereview_set.exists %}
+    <h3>{{article.get_overall_stars}}</h3>
+    {% for i in article.articlereview_set.all %}
+    <br>
+    {{i.body}}
+
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>

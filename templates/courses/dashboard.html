@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard page</h1>
+    {{user.username}}
+    <hr>
+    {{course}}
+    <h1> Chapters </h1>
+    <ol>
+        {% for chapter in course.chapter_set.all %}
+            <li>
+                <h3>{{chapter.title}}</h3>
+                <ol>
+                    {% for lesson in chapter.lesson_set.all %}
+                        <li>{{lesson.title}}</li>
+                    {% endfor %}
+                </ol>
+            </li>    
+        {% endfor %}
+    </ol>
+</body>
+</html>
